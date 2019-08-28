@@ -1,0 +1,32 @@
+{
+  "name": "shopp",
+  "version": "1.0.0",
+  "description": "shopp, a full stack Node Express mySQL demo",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelmccarty/shopp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelmccarty/shopp/issues"
+  },
+  "homepage": "https://github.com/michaelmccarty/shopp#readme",
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "mysql2": "^1.7.0",
+    "passport": "^0.4.0",
+    "passport-google-oauth": "^2.0.0",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "sequelize": "^5.17.0"
+  }
+}

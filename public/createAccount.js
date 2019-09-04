@@ -3,7 +3,7 @@ $("#loginOrCreate").on("click", function (event) {
     event.preventDefault();
 
     // Make a newUser object
-    var newUser = {
+    let newUser = {
         username: $("#name").val().trim(),
         password: $("#password").val()
     };

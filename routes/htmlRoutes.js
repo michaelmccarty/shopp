@@ -1,7 +1,3 @@
-// ===============================================================================
-// DEPENDENCIES
-// We need to include the path package to get the correct file path for our html
-// ===============================================================================
 let path = require("path");
 
 
@@ -15,11 +11,18 @@ module.exports = function(app) {
   // In each of the below cases the user is shown an HTML page of content
   // ---------------------------------------------------------------------------
 
-  app.get("*", function(req, res) {
+  app.get("*", checkAuthenticated, function(req, res) {
     if (req.user) {
       res.send()
     }
     console.log(req.user);
     res.sendFile(path.join(__dirname, "../public/index.html"));
   });
-};
+
+  function checkAuthenticated(req, res, next) {
+    if (req.isAuthenticated())
+      return next()
+
+    res.redirect('/index.html')
+  }
+}

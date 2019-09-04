@@ -2,9 +2,10 @@ require("dotenv").config();
 
 let express = require("express");
 let session = require('express-session');
+let passport = require('passport');
 let app = express();
 
-let PORT = process.env.PORT || 8080;
+let PORT = process.env.PORT || 80;
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
@@ -14,32 +15,14 @@ app.use(express.static("public"));
 let db = require("./models");
 
 let GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const LocalStrategy = require('passport-local').Strategy;
+let LocalStrategy = require('passport-local').Strategy;
 
 
-app.use(session({
-  secret: process.env.SESSIONKEY,
-  resave: false,
-  saveUninitialized: true
-}));
 
-app.use(passport.initialize());
-app.use(passport.session());
 
 require("./routes/apiRoutes")(app, passport, db);
 require("./routes/htmlRoutes")(app);
 
-
-passport.serializeUser(function (user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function (user, done) {
-  done(null, user);
-});
-
-
-let LocalStrategy = require('passport-local').Strategy;
 
 passport.use(new LocalStrategy(
   function (name, password, done) {
@@ -76,7 +59,6 @@ passport.use(new LocalStrategy(
 ));
 
 
-
 // Use the GoogleStrategy within Passport.
 //   Strategies in Passport require a `verify` function, which accept
 //   credentials (in this case, an accessToken, refreshToken, and Google
@@ -84,7 +66,7 @@ passport.use(new LocalStrategy(
 passport.use(new GoogleStrategy({
   clientID: "842729916089-4bdb3mdn3nlluvv2sv8ekld8vjveunqj.apps.googleusercontent.com",
   clientSecret: "VPW_pakQUn2tNKAnPDQuTcYC",
-  callbackURL: "http://localhost:8080/auth/google/callback"
+  callbackURL: "http://localhost:80/auth/google/callback"
 },
   function (accessToken, refreshToken, profile, done) {
     db.User.findOrCreate({
@@ -104,7 +86,7 @@ passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done) {
+passport.deserializeUser(function (id, done) {
   db.User.findByPk(id).then(function (user) {
     done(null, user);
   }).catch(function (err) {
@@ -112,6 +94,14 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
+app.use(session({
+  secret: process.env.SESSIONKEY,
+  resave: false,
+  saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // =============================================================================
 // LISTENER

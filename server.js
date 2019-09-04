@@ -17,6 +17,19 @@ let db = require("./models");
 let passport = require('passport');
 let GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
+
+passport.serializeUser(function (user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  db.account.findByPk(id).then(function (user) {
+    done(null, user);
+  }).catch(function (err) {
+    done(err)
+  });
+});
+
 app.use(session({
   secret: process.env.SESSIONKEY,
   resave: false,

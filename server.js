@@ -52,6 +52,44 @@ passport.deserializeUser(function (user, done) {
 });
 
 
+let LocalStrategy = require('passport-local').Strategy;
+
+passport.use(new LocalStrategy(
+  function (name, password, done) {
+
+    db.User.findOne({
+      where: {
+        name: name
+      }
+    }).then(function (user) {
+      if (!user) { //if user isn't in DB, create one, log in
+
+        db.User.create({
+          name: name,
+          password: password
+        }).then(function (results) {
+        });
+
+        return done(null, false);
+      }
+      else if (user) {
+        // if user is found, check against PW and log in or fail
+        console.log("\n\nsuccessful login\n\n");
+        return done(null, user);
+
+
+        // if (user.password != password)
+        // {
+        //   console.log("\n\nPASSWORDS DONT MATCH\n\n");
+        //   return done(null, false);
+        // }
+      }
+    });
+  }
+));
+
+
+
 // Use the GoogleStrategy within Passport.
 //   Strategies in Passport require a `verify` function, which accept
 //   credentials (in this case, an accessToken, refreshToken, and Google
@@ -74,47 +112,6 @@ passport.use(new GoogleStrategy({
     });
   }
 ));
-
-
-
-let LocalStrategy = require('passport-local').Strategy;
-
-passport.use(new LocalStrategy(
-  function (name, password, done) {
-
-    db.User.findOne({
-      where: {
-        name: name
-      }
-    }).then(function (user) {
-      if (!user) { //if user isn't in DB, create one, log in
-
-        db.User.create({
-          name: name,
-          password: password
-        }).then(function (results) {
-          console.log(results);
-        });
-
-        return done(null, false);
-      }
-      else if (user) {
-        // if user is found, check against PW and log in or fail
-        console.log("\n\nsuccessful login\n\n");
-        return done(null, user);
-
-
-        // if (user.password != password)
-        // {
-        //   console.log("\n\nPASSWORDS DONT MATCH\n\n");
-        //   return done(null, false);
-        // }
-      }
-    });
-  }
-));
-
-
 
 
 

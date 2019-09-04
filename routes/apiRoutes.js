@@ -27,9 +27,9 @@ module.exports = function (app, passport, db) {
 
     app.get('/auth/isauth', (req, res) => {
         if (req.user)
-            res.send({ success: 1, message: 'You are logged in' });
+            res.send(req.user);
         else
-            res.status(401).send({ message: 'You are not logged in' });
+            res.send({ message: 'You are not logged in' });
     });
 
     app.get('/auth/logout', function (req, res) {

@@ -1,6 +1,4 @@
-let path = require("path");
-
-module.exports = function (app, passport, db) {
+module.exports = function (app, passport) {
 
     // GET /auth/google
     //   Use passport.authenticate() as route middleware to authenticate the
@@ -18,7 +16,7 @@ module.exports = function (app, passport, db) {
     app.get('/auth/google/callback',
         passport.authenticate('google', { failureRedirect: '/login' }),
         function (req, res) {
-            res.redirect('/');
+            res.redirect('/loggedIn.html');
         });
 
     // GET /auth/user  - local verifier

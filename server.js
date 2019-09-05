@@ -17,10 +17,17 @@ let db = require("./models");
 let GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 let LocalStrategy = require('passport-local').Strategy;
 
+app.use(session({
+  secret: process.env.SESSIONKEY,
+  resave: false,
+  saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 
-
-require("./routes/apiRoutes")(app, passport, db);
+require("./routes/apiRoutes")(app, passport);
 require("./routes/htmlRoutes")(app);
 
 
@@ -94,14 +101,7 @@ passport.deserializeUser(function (id, done) {
   });
 });
 
-app.use(session({
-  secret: process.env.SESSIONKEY,
-  resave: false,
-  saveUninitialized: true
-}));
 
-app.use(passport.initialize());
-app.use(passport.session());
 
 // =============================================================================
 // LISTENER

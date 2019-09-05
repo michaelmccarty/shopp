@@ -1,4 +1,26 @@
+const db = require('../models');
+const path = require("path");
+
+
 module.exports = function (app, passport) {
+
+    app.get('/logout', (req, res) => {
+        console.log("logout pressed");
+        req.logout();
+        res.end();
+    });
+
+    app.post('/login',
+        passport.authenticate('local', {
+            successRedirect: '/checkbox',
+            failureRedirect: '/main',
+            failerFlash: true
+        })
+    );
+
+    app.get('/login', (req, res) => {
+        res.sendFile(path.join(__dirname, '/public/index.html'))
+    });
 
     // GET /auth/google
     //   Use passport.authenticate() as route middleware to authenticate the
@@ -16,22 +38,6 @@ module.exports = function (app, passport) {
     app.get('/auth/google/callback',
         passport.authenticate('google', { failureRedirect: '/login' }),
         function (req, res) {
-            res.redirect('/loggedIn.html');
+            res.redirect('/main');
         });
-
-    // GET /auth/user  - local verifier
-    app.post("/auth/user", passport.authenticate('local'));
-
-
-    app.get('/auth/isauth', (req, res) => {
-        if (req.user)
-            res.send(req.user);
-        else
-            res.send({ message: 'You are not logged in' });
-    });
-
-    app.get('/auth/logout', function (req, res) {
-        req.logout();
-        res.redirect('/');
-    });
 }

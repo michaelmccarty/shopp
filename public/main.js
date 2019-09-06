@@ -1,4 +1,4 @@
-$("#logOut").on("click", function () {
+$("#logout").on("click", function () {
 
     localStorage.removeItem('username');
 

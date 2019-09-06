@@ -11,6 +11,15 @@ module.exports = function (app) {
   // In each of the below cases the user is shown an HTML page of content
   // ---------------------------------------------------------------------------
 
+
+  app.get('/main',checkAuthenticated, function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/main.html'))
+  })
+
+  app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/index.html'))
+  });
+
   app.get("*", function (req, res) {
     if (req.user) {
       res.send()
@@ -19,15 +28,7 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/index.html"));
   });
 
-  app.get('/main', checkAuthenticated, function (req, res) {
-    res.sendFile(path.join(__dirname, '../public/main.html'))
-  })
-
-
-  app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/index.html'))
-  });
-
+  
   function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated())
       return next()

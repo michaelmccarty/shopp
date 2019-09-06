@@ -9,7 +9,7 @@ $("#loginOrCreate").on("click", function (event) {
     };
 
 
-    $.post("/auth/user", newUser)
+    $.post("/login", newUser)
         .then(function (data) {
         });
 

@@ -45,6 +45,10 @@ passport.use(new LocalStrategy(
           name: name,
           password: password
         }).then(function (results) {
+          console.log ("\n\n\nResults: "+ results+" \n\n\n");
+
+        }).catch(function (err){
+          console.log(err);
         });
 
         return done(null, false);

@@ -24,6 +24,10 @@ module.exports = function (app) {
   })
 
 
+  app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/index.html'))
+  });
+
   function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated())
       return next()

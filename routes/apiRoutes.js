@@ -1,4 +1,3 @@
-const db = require('../models');
 const path = require("path");
 
 
@@ -12,15 +11,12 @@ module.exports = function (app, passport) {
 
     app.post('/login',
         passport.authenticate('local', {
-            successRedirect: '/checkbox',
-            failureRedirect: '/main',
+            successRedirect: '/main',
+            failureRedirect: '/',
             failerFlash: true
         })
     );
 
-    app.get('/login', (req, res) => {
-        res.sendFile(path.join(__dirname, '/public/index.html'))
-    });
 
     // GET /auth/google
     //   Use passport.authenticate() as route middleware to authenticate the

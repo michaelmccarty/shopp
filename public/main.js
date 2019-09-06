@@ -8,7 +8,7 @@ $("#logOut").on("click", function () {
     }).then(function (res) {
         console.log("Data: " + res.data);
         localStorage.removeItem('username');
-        window.location.href = "/logIn.html"
+        window.location.href = "/index.html"
     }
     );
 });

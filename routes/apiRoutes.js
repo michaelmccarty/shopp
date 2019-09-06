@@ -17,6 +17,17 @@ module.exports = function (app, passport) {
         })
     );
 
+    // app.post('/login',
+    // passport.authenticate('local'),
+    // function(req, res) {
+    //   // If this function gets called, authentication was successful.
+    //   // `req.user` contains the authenticated user.
+    //   res.redirect('/main.html');
+    // });
+
+
+
+
 
     // GET /auth/google
     //   Use passport.authenticate() as route middleware to authenticate the

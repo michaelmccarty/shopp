@@ -16,10 +16,13 @@
 <body>
   <div class="content">
 
-    <input type="text" id="name" placeholder="username"> </input>
-    <input type="password" id="password" placeholder="password"> </input>
-    <button type="submit" class="btn btn-primary btn-md" id="loginOrCreate">
-      <span class="fa fa-book"></span> Sign in or Sign Up</button>
+    <form action="/login" method="POST">
+      <input type="text" name="username" id="name" placeholder="username" />
+      <input type="password" name="password" id="password" placeholder="password" />
+      <button type="submit" class="btn btn-primary btn-md">
+        <span class="fa fa-book"></span> Sign in or Sign Up
+      </button>
+    </form>
 
 
     <a class="btn btn-social btn-google" href="auth/google">

@@ -13,7 +13,7 @@ module.exports = function (app, passport) {
         passport.authenticate('local', {
             successRedirect: '/main',
             failureRedirect: '/',
-            failerFlash: true
+            failerFlash: false
         })
     );
 

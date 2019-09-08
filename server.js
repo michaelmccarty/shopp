@@ -44,11 +44,12 @@ passport.use(new LocalStrategy(
         db.User.create({
           name: name,
           password: password
-        }).then(function (results) {
+        }).then(function (result) {
           console.log("\n\ncreated new user, "+ name +"\n\n");
-        });
+          return done(null, result);
+        }).catch(err => console.log(err));
 
-        return done(null, user);
+        
       }
       else if (user) {
         // if user is found, check against PW and log in or fail

@@ -104,7 +104,6 @@ passport.deserializeUser(function (id, done) {
 });
 
 
-
 // =============================================================================
 // LISTENER
 // The below code effectively "starts" our server

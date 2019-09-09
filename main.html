@@ -14,11 +14,14 @@
 </head>
 
 <body>
-  <div class="content">
+  <div class="loginBar" style="background-color: grey">
 
-    <button type="submit" class="btn btn-primary btn-md" id="logout">
-      <span class="fa fa-book"></span>Logout</button>
+    <button type="submit" class="btn btn-primary btn-md" id="logout"><span class="fa fa-book"></span>Logout</button>
+
   </div>
+
+
+
 
   <script type="text/javascript">
     $(document).ready(function () {
@@ -29,17 +32,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-      
       $("#logout").on("click", function () {
 
         localStorage.removeItem('username');
@@ -54,14 +46,6 @@
         }
         );
       });
-
-
-
-
-
-
-
-
 
 
 

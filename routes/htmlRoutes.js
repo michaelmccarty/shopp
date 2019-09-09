@@ -15,12 +15,13 @@ module.exports = function (app) {
 
 
   app.get('/main',checkAuthenticated, function (req, res) {
-    res.sendFile(path.join(__dirname, '../public/main.html'))
+    res.sendFile(path.join(__dirname, '../main.html'))
+    //res.redirect('../main.html');
   })
 
-  app.get('/main.html',checkAuthenticated, function (req, res) {
-    res.sendFile(path.join(__dirname, '../public/main.html'))
-  })
+  // app.get('/main.html',checkAuthenticated, function (req, res) {
+  //   res.sendFile(path.join(__dirname, '../public/main.html'))
+  // })
 
   app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'))

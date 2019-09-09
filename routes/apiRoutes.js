@@ -4,7 +4,15 @@ const path = require("path");
 module.exports = function (app, passport) {
 
     app.get('/logout', (req, res) => {
-        console.log("logout pressed");
+
+
+        if (req.user.googleId)
+            console.log("\n\n\nGoogle user logged out ID's: " + req.user.googleId + "\n\n\n");
+
+        else
+            console.log("\n\n\n"+req.user.name+" user has been logged out.\n\n\n");
+
+
         req.logout();
         res.end();
     });
@@ -16,15 +24,6 @@ module.exports = function (app, passport) {
             failerFlash: false
         })
     );
-
-    // app.post('/login',
-    // passport.authenticate('local'),
-    // function(req, res) {
-    //   // If this function gets called, authentication was successful.
-    //   // `req.user` contains the authenticated user.
-    //   res.redirect('/main.html');
-    // });
-
 
 
 
@@ -45,6 +44,6 @@ module.exports = function (app, passport) {
     app.get('/auth/google/callback',
         passport.authenticate('google', { failureRedirect: '/' }),
         function (req, res) {
-            res.redirect('/main.html');
+            res.redirect('/main');
         });
 }

@@ -75,7 +75,7 @@ passport.use(new LocalStrategy(
 passport.use(new GoogleStrategy({
   clientID: "842729916089-4bdb3mdn3nlluvv2sv8ekld8vjveunqj.apps.googleusercontent.com",
   clientSecret: "VPW_pakQUn2tNKAnPDQuTcYC",
-  callbackURL: "http://localhost:80/auth/google/callback"
+  callbackURL: "http://shoppp.herokuapp.com:80/auth/google/callback"
 },
   function (accessToken, refreshToken, profile, done) {
     db.User.findOrCreate({

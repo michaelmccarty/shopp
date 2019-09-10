@@ -10,11 +10,11 @@ module.exports = function (app) {
   // Below code handles when users "visit" a page.
   // In each of the below cases the user is shown an HTML page of content
   // ---------------------------------------------------------------------------
-  
-  
 
 
-  app.get('/main',checkAuthenticated, function (req, res) {
+
+
+  app.get('/main', checkAuthenticated, function (req, res) {
     res.sendFile(path.join(__dirname, '../main.html'))
     //res.redirect('../main.html');
   })
@@ -37,11 +37,10 @@ module.exports = function (app) {
 
 
 
-  
+
   function checkAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
+    if (req.isAuthenticated())
       return next()
-    }
 
     res.redirect('/index.html')
   }

@@ -106,8 +106,8 @@ passport.deserializeUser(function (id, done) {
 
 db.Product.findOrCreate({
   where: {
-    name: bananas,
-    department_name: grocery,
+    name: "bananas",
+    department_name: "grocery",
     stock_quantity: 18,
     price: 1.99
   }

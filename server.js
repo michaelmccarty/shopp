@@ -104,6 +104,17 @@ passport.deserializeUser(function (id, done) {
 });
 
 
+db.Product.findOrCreate({
+  where: {
+    name: bananas,
+    department_name: grocery,
+    stock_quantity: 18,
+    price: 1.99
+  }
+}).then(function (result){
+  console.log(result+" has been created.");
+});
+
 // =============================================================================
 // LISTENER
 // The below code effectively "starts" our server

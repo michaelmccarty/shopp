@@ -106,20 +106,20 @@ passport.deserializeUser(function (id, done) {
 
 db.Product.findOrCreate({
   where: {
-    name: "pizza",
-    department_name: "grocery",
-    stock_quantity: 28,
-    price: 12.99
+    name: "headphones",
+    department_name: "electronics",
+    stock_quantity: 7,
+    price: 29.99
   }
 }).then(function (result) {
   console.log(result + " has been created.");
 
   db.Product.findOrCreate({
     where: {
-      name: "tv",
-      department_name: "electronics",
+      name: "makeup",
+      department_name: "home",
       stock_quantity: 15,
-      price: 1200.50
+      price: 8.99
     }
   }).then(function (results2) {
 

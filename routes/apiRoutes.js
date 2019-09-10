@@ -48,7 +48,6 @@ module.exports = function (app, passport, db) {
 
     app.get('/products', checkAuthenticated, (req, res) => {
 
-
         console.log("\n\n\n\n\n\n\n\n\n");
 
         db.Product.findAll({}).then(function (products) {

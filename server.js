@@ -45,15 +45,15 @@ passport.use(new LocalStrategy(
           name: name,
           password: password
         }).then(function (result) {
-          console.log("\n\ncreated new user, "+ name +"\n\n");
+          console.log("\n\ncreated new user, " + name + "\n\n");
           return done(null, result);
         }).catch(err => console.log(err));
 
-        
+
       }
       else if (user) {
         // if user is found, check against PW and log in or fail
-        console.log("\n\nsuccessful login, "+ user.name +"\n\n");
+        console.log("\n\nsuccessful login, " + user.name + "\n\n");
         return done(null, user);
 
 

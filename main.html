@@ -23,7 +23,8 @@
 
   <div class="content">
 
-    <button type="submit" class="btn btn-primary btn-md" id="products"><span class="fa fa-shopping-bag"></span>Display All
+    <button type="submit" class="btn btn-primary btn-md" id="products"><span class="fa fa-shopping-bag"></span>Display
+      All
       Products</button>
 
 
@@ -44,8 +45,13 @@
           method: "get",
           url: "/products"
         }).then(function (res) {
-          console.log("Data: " + res);
           //window.location.href = "/index.html"
+
+          $(".content").empty();
+
+          for (i in res){
+            $(".content").prepend(`<p><strong>${res[i].name} (${res[i].stock_quantity} left)</strong>: $${res[i].price}</p>`);
+          }
         }
         );
       });

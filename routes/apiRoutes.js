@@ -53,42 +53,9 @@ module.exports = function (app, passport, db) {
 
         db.Product.findAll({}).then(function (products) {
             res.json(products);
+        }).catch (function (err){
+            console.log(err);
         });
-
-        // db.User.findOne({
-        //     where: {
-        //       name: name
-        //     }
-        //   }).then(function (user) {
-        //     if (!user) { //if user isn't in DB, create one, log in
-
-        //       db.User.create({
-        //         name: name,
-        //         password: password
-        //       }).then(function (result) {
-        //         console.log("\n\ncreated new user, "+ name +"\n\n");
-        //         return done(null, result);
-        //       }).catch(err => console.log(err));
-
-
-        //     }
-        //     else if (user) {
-        //       // if user is found, check against PW and log in or fail
-        //       console.log("\n\nsuccessful login, "+ user.name +"\n\n");
-        //       return done(null, user);
-
-
-        //       // if (user.password != password)
-        //       // {
-        //       //   console.log("\n\nPASSWORDS DONT MATCH\n\n");
-        //       //   return done(null, false);
-        //       // }
-        //     }
-        //   });
-
-
-
-        res.end()
 
     });
 

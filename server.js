@@ -104,30 +104,6 @@ passport.deserializeUser(function (id, done) {
 });
 
 
-db.Product.findOrCreate({
-  where: {
-    name: "paper towels",
-    department_name: "home",
-    stock_quantity: 15,
-    price: 2.99
-  }
-}).then(function (result) {
-  console.log(result + " has been created.");
-
-  db.Product.findOrCreate({
-    where: {
-      name: "lightbulb",
-      department_name: "home",
-      stock_quantity: 3,
-      price: .99
-    }
-  }).then(function (results2) {
-
-  })
-
-});
-
-
 
 // =============================================================================
 // LISTENER
